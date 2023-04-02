@@ -12,5 +12,5 @@ resource "google_storage_bucket_iam_member" "github_action_sa_tfstate_binding" {
 resource "google_project_iam_member" "github_action_sa_iam_binding" {
   member  = "serviceAccount:${google_service_account.github_action_sa.email}"
   project = local.project-id
-  role    = "iam.serviceAccounts.get"
+  role    = "roles/iam.serviceAccountUser"
 }
