@@ -1,5 +1,6 @@
 // Topic
 resource "google_pubsub_topic" "topic_no_schema" {
+  project                    = local.project-id
   name                       = "topic-no-schema"
   message_retention_duration = "86600s"
 }
@@ -7,8 +8,9 @@ resource "google_pubsub_topic" "topic_no_schema" {
 
 // Subscription
 resource "google_pubsub_subscription" "topic_no_schema_subscription" {
-  name  = "${google_pubsub_topic.topic_no_schema.name}-sub"
-  topic = google_pubsub_topic.topic_no_schema.name
+  project = local.project-id
+  name    = "${google_pubsub_topic.topic_no_schema.name}-sub"
+  topic   = google_pubsub_topic.topic_no_schema.name
 
   ack_deadline_seconds       = 20
   message_retention_duration = "1200s"
