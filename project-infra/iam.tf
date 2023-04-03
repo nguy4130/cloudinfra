@@ -3,6 +3,11 @@ resource "google_service_account" "github_action_sa" {
   description = "Service Account to automate Terraform via Github Action"
 }
 
+resource "google_service_account" "dataflow_sa" {
+  account_id  = "dataflow-sa"
+  description = "Service Account to be used by Dataflow jobs"
+}
+
 resource "google_storage_bucket_iam_member" "github_action_sa_tfstate_binding" {
   bucket = google_storage_bucket.default.name
   member = "serviceAccount:${google_service_account.github_action_sa.email}"
